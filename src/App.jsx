@@ -1,16 +1,23 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import { useState, useRef } from "react";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Slider from "./components/Slider";
+import Form from "./components/Form";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const qualityRef = useRef();
+  const packagingRef = useRef();
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("Name:", qualityRef.current.value);
+  }
   return (
     <>
-      <Slider sliderName="Quality of Product" />
-      <Slider sliderName="Quality of Packageing" />
+      <Form formSubmit={handleSubmit}>
+        <Slider sliderName="Quality of Product" ref={qualityRef} />
+        <Slider sliderName="Quality of Packageing" ref={packagingRef} />
+      </Form>
     </>
   );
 }

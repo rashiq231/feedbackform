@@ -1,32 +1,25 @@
-import { useRef } from "react";
-export default function Slider({ sliderName }) {
-  const sliderRef = useRef();
-  function handleSubmit(event) {
-    event.preventDefault();
-    // Process the form data here
-    console.log("Name:", sliderRef.current.value);
-  }
+import { forwardRef } from "react";
+const Slider = forwardRef(function Slider({ sliderName }, ref) {
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor={sliderName}>
-            {sliderName}
-            <input
-              type="range"
-              min={1}
-              max={100}
-              id={sliderName}
-              name={sliderName}
-              onChange={(e) => e.target.value}
-              ref={sliderRef}
-            />
-          </label>
-          <p>Additional Message</p>
-          <textarea name="" id=""></textarea>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <div>
+        <label htmlFor={sliderName}>
+          {sliderName}
+          <input
+            type="range"
+            min={1}
+            max={100}
+            id={sliderName}
+            name={sliderName}
+            onChange={(e) => e.target.value}
+            ref={ref}
+          />
+        </label>
+        <p>Additional Message</p>
+        <textarea name="" id=""></textarea>
+      </div>
     </>
   );
-}
+});
+
+export default Slider;
